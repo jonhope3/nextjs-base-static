@@ -3,12 +3,13 @@
   "scripts": {
     "build": "NODE_ENV=production next build",
     "dev": "NODE_ENV=development next dev",
-    "start": "NODE_ENV=production next start"
+    "start": "NODE_ENV=production next start",
+    "serve": "NODE_ENV=production npx serve@latest out"
   },
   "dependencies": {
     "next": "latest",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
   },
   "engines": {
     "node": ">=18"
