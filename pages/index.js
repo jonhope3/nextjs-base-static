@@ -1,131 +1,111 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { ParallaxProvider, ParallaxBanner, Parallax } from 'react-scroll-parallax';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    const [mounted, setMounted] = useState(false);
 
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
+    return (
+        <ParallaxProvider>
+            <div className={styles.container}>
+                <Head>
+                    <title>Our Wedding</title>
+                    <link rel="icon" href="/favicon.ico" />
+                    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&display=swap" rel="stylesheet" />
+                </Head>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+                <nav className={styles.nav}>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#details">Details</a></li>
+                        <li><a href="#rsvp">RSVP</a></li>
+                    </ul>
+                </nav>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+                {mounted && (
+                    <>
+                        <ParallaxBanner
+                            layers={[
+                                {
+                                    image: 'https://wallpapercave.com/wp/wp4902063.jpg',
+                                    speed: -20
+                                }
+                            ]}
+                            className={styles.parallaxBanner}
+                        >
+                            <main className={styles.main} id="home">
+                                <h1 className={styles.title}>John & Jane</h1>
+                                <p className={styles.date}>August 15, 2025</p>
+                                <a href="#rsvp" className={styles.rsvpButton}>RSVP</a>
+                            </main>
+                        </ParallaxBanner>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+                        <section id="story" className={styles.section}>
+                            <Parallax translateY={[-20, 20]}>
+                                <h2>Our Story</h2>
+                                <p>We met on a rainy day in Central Park. John was trying to catch his runaway dog, and Jane was there to help. The rest, as they say, is history.</p>
+                            </Parallax>
+                        </section>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+                        <ParallaxBanner
+                            layers={[
+                                {
+                                    image: 'https://images.unsplash.com/photo-1519741497674-611481863552',
+                                    speed: -15
+                                }
+                            ]}
+                            className={styles.parallaxBanner}
+                        >
+                            <div className={styles.overlayContent}>
+                                <h2>"Love is composed of a single soul inhabiting two bodies."</h2>
+                                <p>- Aristotle</p>
+                            </div>
+                        </ParallaxBanner>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/vercel.svg`} alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
+                        <section id="details" className={styles.section}>
+                            <Parallax translateY={[-15, 15]}>
+                                <h2>Wedding Details</h2>
+                                <p>Join us for our celebration of love!</p>
+                                <ul>
+                                    <li>Date: August 15, 2025</li>
+                                    <li>Time: 4:00 PM</li>
+                                    <li>Venue: The Grand Hotel, New York City</li>
+                                    <li>Dress Code: Formal</li>
+                                </ul>
+                            </Parallax>
+                        </section>
 
-      <style jsx>{`
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        footer img {
-          margin-left: 0.5rem;
-        }
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-decoration: none;
-          color: inherit;
-        }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family:
-            Menlo,
-            Monaco,
-            Lucida Console,
-            Liberation Mono,
-            DejaVu Sans Mono,
-            Bitstream Vera Sans Mono,
-            Courier New,
-            monospace;
-        }
-      `}</style>
+                        <ParallaxBanner
+                            layers={[
+                                {
+                                    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622',
+                                    speed: -15
+                                }
+                            ]}
+                            className={styles.parallaxBanner}
+                        >
+                            <div className={styles.overlayContent}>
+                                <h2>"To love and be loved is to feel the sun from both sides."</h2>
+                                <p>- David Viscott</p>
+                            </div>
+                        </ParallaxBanner>
 
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            Segoe UI,
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            Fira Sans,
-            Droid Sans,
-            Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  );
+                        <section id="rsvp" className={styles.section}>
+                            <Parallax translateY={[-10, 10]}>
+                                <h2>RSVP</h2>
+                                <p>We would be honored to have you join us on our special day. Please RSVP by July 1, 2025.</p>
+                                <button className={styles.rsvpButton}>RSVP Now</button>
+                            </Parallax>
+                        </section>
+                    </>
+                )}
+            </div>
+        </ParallaxProvider>
+    );
 }

@@ -9,7 +9,9 @@
   "dependencies": {
     "next": "latest",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "react-scroll-parallax": "^3.4.5",
+    "sass": "^1.78.0"
   },
   "engines": {
     "node": ">=18"
